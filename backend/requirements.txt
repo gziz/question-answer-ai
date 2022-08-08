@@ -1,0 +1,12 @@
+requests
+# -f https://download.pytorch.org/whl/torch_stable.html
+torch==1.8.0
+transformers==4.2.2
+
+cassandra-driver
+fastapi
+gunicorn
+pypyr
+python-dotenv
+uvicorn
+boto3

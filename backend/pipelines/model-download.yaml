@@ -1,0 +1,23 @@
+context_parser: pypyr.parser.keyvaluepairs
+steps:
+
+  - name: pypyr.steps.py
+    in:
+      py: |
+        import os
+        import pathlib
+        from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+
+        local_model_dir = "ai-models/"
+        model_name = "bert-base-cased-squad2"
+
+        destination_path = pathlib.Path(local_model_dir).resolve()
+        destination_path = destination_path / model_name
+
+        destination_path.mkdir(exist_ok=True, parents=True)
+
+        tokenizer = AutoTokenizer.from_pretrained(f"deepset/{model_name}")
+        model = AutoModelForQuestionAnswering.from_pretrained(f"deepset/{model_name}")
+
+        model.save_pretrained(destination_path)
+        tokenizer.save_pretrained(destination_path)

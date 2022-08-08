@@ -1,0 +1,27 @@
+context_parser: pypyr.parser.keyvaluepairs
+steps:
+
+  - name: pypyr.steps.py
+    in:
+      py: |
+        import os
+        import pathlib
+        import boto3
+        from dotenv import load_dotenv
+        load_dotenv()     ##4
+
+        bundle_local_dir = "db_bundle/"
+        s3_file = "astra-bundle-question-answering.zip"
+
+        destination_path = pathlib.Path(bundle_local_dir).resolve()
+        destination_path.mkdir(exist_ok=True, parents=True)
+
+        destination_fpath = destination_path / s3_file
+
+        session = boto3.session.Session()
+        bucket_name = os.environ.get('BUCKET_NAME')
+        region_name = os.environ.get('REGION_NAME')
+        client = session.client('s3', region_name=region_name, endpoint_url=None)
+
+        client.download_file(bucket_name, s3_file, str(destination_fpath))
+        
