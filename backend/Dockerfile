@@ -13,8 +13,8 @@ WORKDIR /app
 
 RUN chmod +x entrypoint.sh
 
-RUN /opt/venv/bin/python -m pypyr /app/pipelines/model-download
-RUN /opt/venv/bin/python -m pypyr /app/pipelines/bundle-download
+RUN /opt/venv/bin/python -m pypyr /pipelines/model-download
+RUN /opt/venv/bin/python -m pypyr /pipelines/bundle-download
 
 
 CMD ["./entrypoint.sh"]
