@@ -1,7 +1,6 @@
 import axios from "axios";
 
-console.log(process.env.BASEURL)
-const baseURL = process.env.BASEURL
+const baseURL = "http://20.210.235.55"
 
 export default axios.create({
     baseURL,
