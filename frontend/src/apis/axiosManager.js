@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://20.210.235.55"
+const baseURL = process.env.REACT_APP_BASEURL
 
 export default axios.create({
     baseURL,
