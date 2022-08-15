@@ -2,43 +2,60 @@ import React from "react";
 import axiosManager from '../apis/axiosManager';
 import Form from "./Forms.jsx"
 import Results from "./Results.jsx";
+import NavBar from "./NavBar.jsx"
 
 const Home = () => { 
-
+    const [tmpContext, setTmpContext] = React.useState("");
     const [context, setContext] = React.useState("");
     const [question, setQuestion] = React.useState("");
     const [answer, setAnswer] = React.useState("");
     const [hasResult, setHasResult] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
+    const [contextType, setContextType] = React.useState("question-text")
 
     const onSubmit = async () => {
       try{
         console.log("Submitting");
         setIsLoading(true);
-        const res = await axiosManager.post("/questionanswering", {
-          "data": [{"question": question,
-                    "context": context}]
+        
+        const endpoint = `/${contextType}`
+        const res = await axiosManager.post(endpoint, {
+          "data": {"question": question,
+                    "context": context}
         });
         onResult(res.data)
-
+      
       }catch(err){
         console.log(err.message);
       }
-      
     }
 
     // Cuando el result llegue del api:
     const onResult = (data) => {
-        setAnswer(data.answer.answer);
+        setTmpContext(context);
+
+        const modified_context = data.data.context.replace(
+            data.data.answer, '"""' + data.data.answer + '"""'
+        );
+        setContext(modified_context);
+        setAnswer(data.data.answer);
         setHasResult(true);
         setIsLoading(true);
     };
 
     // Cuando le demos back al boton en resultados:
-    const onReset = (data) => { 
-
+    const onReset = (data) => {
+        setContext(tmpContext);
         setHasResult(false);
         setIsLoading(false);
+
+    }
+    
+    const navChange = (data) => {
+      setHasResult(false);
+      setAnswer("");
+      setContext("");
+      setQuestion("");
     }
   
     // Hace render al forms o a la seccion de resultados
@@ -50,25 +67,27 @@ const Home = () => {
           question={question}
           answer={answer}
           onBack={onReset}
+          contextType={contextType}
         />
       );
     } else {
     displayedElement = (
       <Form
         context={context}
+        contextType={contextType}
         setContext={setContext}
         question={question}
         setQuestion={setQuestion}
-        
         onSubmit={onSubmit}
         isLoading={isLoading}
       />
     );
     }
 
-
-
     return (
+      <>
+        <NavBar setContextType={setContextType} navChange={navChange}/>
+        
         <div className="h-screen flex">
             <div className="max-w-xl m-auto p-5">
                 <div className="dark:bg-slate-800 p-6 rounded-md text-white">
@@ -80,6 +99,8 @@ const Home = () => {
                 </div>
             </div>
         </div>
+
+      </>
     )
 }
 

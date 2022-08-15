@@ -9,22 +9,46 @@ const Form = (props) => {
         const text = e.currentTarget.value;
           props.setQuestion(text);
       };
+    
+    let contextInput = <></>;
+    if (props.contextType === "question-text") {
 
-    return (
+      contextInput = (
         <>
         <div className="mb-6 text-slate-200">
           <p>Give me a context (paragraph/sentence) and a question. I will try to answer ...</p>
         </div>
-
-        <label className="">Context</label>
+        <label className="">Context as Text</label>
         <textarea
-        className="h-32 bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3"
-        type="text" placeholder="Type your context!" 
-        onChange={(e) => updateContextValue(e)} 
-        value={props.context}
+          className="h-48 bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3"
+          type="text" placeholder="Type your context!" 
+          onChange={(e) => updateContextValue(e)} 
+          value={props.context}
         ></textarea>
+        </>
+      );
+    } else {
+      contextInput = (
+        <>
+          <div className="mb-6 text-slate-200">
+            <p>Give me a context as a website url and a question. I will scrape the website and try to answer ...</p>
+          </div>
+          <label className="">Context as URL</label>
+          <textarea
+            className="h-48 bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3"
+            type="text" placeholder="Paste your url!" 
+            onChange={(e) => updateContextValue(e)} 
+            value={props.context}
+          ></textarea>
+        </>
+      );
+      }
 
-        
+    return (
+
+        <>
+        {contextInput}
+
         <label className="">Question</label>
         <textarea
         className="bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3"
@@ -48,4 +72,5 @@ const Form = (props) => {
     )
 };
 
-export default Form;
+
+export default Form; 
