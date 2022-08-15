@@ -8,8 +8,6 @@ from cassandra.query import SimpleStatement
 
 from . import ai, schema, db_models, db
 
-# import ai, schema, db_models, db
-
 QAModel = db_models.QAModel
 
 app = FastAPI()
@@ -41,18 +39,43 @@ def show_records():
     return list(data)
 
 
-@app.post("/questionanswering")
+@app.post("/question-text")
 def predict(req: schema.Request):
 
-    data = req.data[0]
-    res = AI_MODEL(data)
+    context = req.data['context']
+    question = req.data['question']
+    input_model = {"question":question,
+                  "context":context}
 
-    data = {"question":data["question"],
-            "context": data["context"],
+    res = AI_MODEL(input_model)
+
+    data = {"question":question,
+            "context": context,
             "answer" : res["answer"],
             "score": res["score"]}
     
     obj = QAModel.objects.create(**data)
 
+    return {"data": data}
 
-    return {"answer": res}
+
+@app.post("/question-url")
+def predict(req: schema.Request):
+
+    url = req.data['context']
+    question = req.data['question']
+
+    context = scrape.scrape_url(url)
+
+    input_model = {"question":question,
+                  "context":context}
+
+    res = AI_MODEL(input_model)
+
+    data = {"question":question,
+        "context": context,
+        "answer" : res["answer"],
+        "score": res["score"]}
+    
+
+    return {"data": data}
