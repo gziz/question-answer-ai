@@ -45,7 +45,7 @@ baseURL = "http://127.0.0.1:<your port>"
   
   
 2. Additionally, you can provide a url as a context.
-    * The app will scrape the website looking for text as context and try to responde the question.
+    * The app will scrape the website looking for text as context and try to respond the question.
     * A more realistic scenario, having a question that could be responded with the text from a website.
 
   <p align="center">
