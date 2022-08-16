@@ -36,8 +36,8 @@ baseURL = "http://127.0.0.1:<your port>"
   * If desired, the app can store your query for metrics purposes.
   
   <p float="left">
-   <img src="https://drive.google.com/uc?export=view&id=1x_gUWMIJzEy2UiMvFdMxxEmBYnuDTRPJ"  width="500" height="auto">
-  <img src="https://drive.google.com/uc?export=view&id=1OmyXPNkj2dvG5EA6vBoXsbQsp4kt3jrL"  width="500" height="auto">
+   <img src="https://drive.google.com/uc?export=view&id=1x_gUWMIJzEy2UiMvFdMxxEmBYnuDTRPJ"  width="400" height="auto">
+  <img src="https://drive.google.com/uc?export=view&id=1OmyXPNkj2dvG5EA6vBoXsbQsp4kt3jrL"  width="400" height="auto">
   </p>
   
   * The AI understood that asking for Bill is also asking for Smith (same person). Not only that, but the text does not explicitly specifies the age of Bill (no "Bill is 36 years old...", no "Bill's age is ..."), it understood from the context that 36 is Bill's age.
@@ -48,7 +48,7 @@ baseURL = "http://127.0.0.1:<your port>"
     * A more realistic scenario, having a question that could be responded with the text from a website.
 
   <p float="left">
-   <img src="https://drive.google.com/uc?export=view&id=1GUTLsFWYCa7dTkLD-q46bEKMldYAoA4w"  width="500" height="auto">
-  <img src="https://drive.google.com/uc?export=view&id=1XPF0GFbVFpsKEh0afiu7moc_8io8mKFd"  width="500" height="auto">
+   <img src="https://drive.google.com/uc?export=view&id=1GUTLsFWYCa7dTkLD-q46bEKMldYAoA4w"  width="400" height="auto">
+  <img src="https://drive.google.com/uc?export=view&id=1XPF0GFbVFpsKEh0afiu7moc_8io8mKFd"  width="400" height="auto">
   </p>
 
