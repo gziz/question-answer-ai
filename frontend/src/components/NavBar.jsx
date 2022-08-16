@@ -22,8 +22,8 @@ const NavBar = (props) => {
                             justify-start">
 
                 <span className="self-center text-xl font-semibold dark:text-white">Q&A</span>
-                <a onClick={() => updateContextType("text")} href="#" className="self-center text-gray-300 hover:text-white">Context As Text</a>
-                <a onClick={() => updateContextType("url")} href="#" className="self-center text-gray-300 hover:text-white">Context As Url</a>
+                <button onClick={() => updateContextType("text")} className="self-center text-gray-300 hover:text-white">Context As Text</button>
+                <button onClick={() => updateContextType("url")} className="self-center text-gray-300 hover:text-white">Context As Url</button>
             </div>
 
     )

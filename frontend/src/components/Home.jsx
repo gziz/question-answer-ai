@@ -11,17 +11,20 @@ const Home = () => {
     const [answer, setAnswer] = React.useState("");
     const [hasResult, setHasResult] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [contextType, setContextType] = React.useState("question-text")
+    const [contextType, setContextType] = React.useState("question-text");
+    const [storeQuery, setStoreQuery] = React.useState(true);
 
     const onSubmit = async () => {
       try{
+        console.log(storeQuery);
         console.log("Submitting");
         setIsLoading(true);
         
         const endpoint = `/${contextType}`
         const res = await axiosManager.post(endpoint, {
           "data": {"question": question,
-                    "context": context}
+                    "context": context,
+                  "storeQuery": storeQuery}
         });
         onResult(res.data)
       
@@ -35,7 +38,7 @@ const Home = () => {
         setTmpContext(context);
 
         const modified_context = data.data.context.replace(
-            data.data.answer, '"""' + data.data.answer + '"""'
+            data.data.answer, '--->' + data.data.answer + '<---'
         );
         setContext(modified_context);
         setAnswer(data.data.answer);
@@ -80,6 +83,8 @@ const Home = () => {
         setQuestion={setQuestion}
         onSubmit={onSubmit}
         isLoading={isLoading}
+        setStoreQuery={setStoreQuery}
+        storeQuery={storeQuery}
       />
     );
     }

@@ -14,7 +14,8 @@
                     className="h-48 bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3"
                     type="text" readOnly
                     value={props.context}
-                >{props.context}</textarea>
+                >
+                </textarea>
             </>
 
         );

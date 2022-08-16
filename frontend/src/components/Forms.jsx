@@ -57,13 +57,18 @@ const Form = (props) => {
         value={props.question}
         ></textarea>
 
+        <div className="flex items-center mb-4">
+            <input checked={props.storeQuery} onChange={(e) => props.setStoreQuery(e.target.checked)} id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300"/>
+            <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Save my query</label>
+        </div>
+
         <div className= {"mb-2 text-sm text-right"}>
           Powered by Hugging Face
         </div>
 
         <button 
         type="submit"
-        className="bg-indigo-700 disabled:opacity-50 w-full p-2 rounded-md text-lg"
+        className="bg-indigo-900 disabled:opacity-50 w-full p-2 rounded-md text-lg hover:bg-indigo-800"
         onClick={props.onSubmit}
         >
             Submit</button>
