@@ -25,7 +25,7 @@ uvicorn main:app --reload
 ```
 npm start
 ```
-4. Modify the baseURL in axiosManager.js with your local port where python's running.
+4. Modify the baseURL in axiosManager.js with your local port (where python's running).
 ```
 baseURL = "http://127.0.0.1:<your port>"
 ```
