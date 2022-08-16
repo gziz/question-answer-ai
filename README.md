@@ -36,10 +36,8 @@ baseURL = "http://127.0.0.1:<your port>"
   * If desired, the app can store your query for metrics purposes.
   
   <p align="center">
-   <img src="https://drive.google.com/uc?export=view&id=1x_gUWMIJzEy2UiMvFdMxxEmBYnuDTRPJ"  width="500" height="auto">
-  </p>
-  <p align="center">
-   <img src="https://drive.google.com/uc?export=view&id=1OmyXPNkj2dvG5EA6vBoXsbQsp4kt3jrL"  width="500" height="auto">
+   <img src="https://drive.google.com/uc?export=view&id=1x_gUWMIJzEy2UiMvFdMxxEmBYnuDTRPJ"  width="550" height="auto">
+    <img src="https://drive.google.com/uc?export=view&id=1OmyXPNkj2dvG5EA6vBoXsbQsp4kt3jrL"  width="550" height="auto">
   </p>
   
   
@@ -51,7 +49,7 @@ baseURL = "http://127.0.0.1:<your port>"
     * A more realistic scenario, having a question that could be responded with the text from a website.
 
   <p align="center">
-   <img src="https://drive.google.com/uc?export=view&id=1GUTLsFWYCa7dTkLD-q46bEKMldYAoA4w"  width="500" height="auto">
-  <img src="https://drive.google.com/uc?export=view&id=1XPF0GFbVFpsKEh0afiu7moc_8io8mKFd"  width="500" height="auto">
+   <img src="https://drive.google.com/uc?export=view&id=1GUTLsFWYCa7dTkLD-q46bEKMldYAoA4w"  width="550" height="auto">
+  <img src="https://drive.google.com/uc?export=view&id=1XPF0GFbVFpsKEh0afiu7moc_8io8mKFd"  width="550" height="auto">
   </p>
 
