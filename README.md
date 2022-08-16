@@ -11,7 +11,7 @@ BERT is an open source model that has been pretrained with wikipidea for NLP tas
 ```
 pip install -r requirements.txt
 ```
-2. Download the necessary files (models and Cassandra bundle).
+2. Download the necessary files (models and Cassandra bundle) using yaml pipelines .
 ```
 python -m pypyr /app/pipelines/model-download
 python -m pypyr /app/pipelines/bundle-download
