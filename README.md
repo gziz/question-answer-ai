@@ -35,12 +35,19 @@ baseURL = "http://127.0.0.1:<your port>"
   * If desired, the app can store your query for metrics purposes.
   
   <p float="left">
-  <img src="https://drive.google.com/uc?export=view&id=1FSLOorq-LWfFdEmMFNMM6EWtAkPjzO8N"  width="500" height="auto">
-  <img src="https://drive.google.com/uc?export=view&id=1vskW0aOUc_L7Pg78itEUrax7TGyg7MMn"  width="500" height="auto">
-
+   <img src="https://drive.google.com/uc?export=view&id=1x_gUWMIJzEy2UiMvFdMxxEmBYnuDTRPJ"  width="500" height="auto">
+  <img src="https://drive.google.com/uc?export=view&id=1OmyXPNkj2dvG5EA6vBoXsbQsp4kt3jrL"  width="500" height="auto">
   </p>
+  
+  * The AI understood that asking for Bill is also asking for Smith (same person). Not only that, but the text does not explicitly specifies the age of Bill (no "Bill is 36 years old...", no "Bill's age is ..."), it understood from the context that 36 is Bill's age.
+  
   
 2. Additionally, you can provide a url as a context.
     * The app will scrape the website looking for text as context and try to responde the question.
-    * A more realistic application, a question that could be responded with the text  a website.
+    * A more realistic scenario, having a question that could be responded with the text from a website.
+
+  <p float="left">
+   <img src="https://drive.google.com/uc?export=view&id=1GUTLsFWYCa7dTkLD-q46bEKMldYAoA4w"  width="500" height="auto">
+  <img src="https://drive.google.com/uc?export=view&id=1XPF0GFbVFpsKEh0afiu7moc_8io8mKFd"  width="500" height="auto">
+  </p>
 
