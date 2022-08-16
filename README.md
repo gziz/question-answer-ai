@@ -35,10 +35,10 @@ baseURL = "http://127.0.0.1:<your port>"
 1. Type a context and a question, the latter should be retrieved from the former.
   * If desired, the app can store your query for metrics purposes.
   
-  <p float="center">
+  <p align="center">
    <img src="https://drive.google.com/uc?export=view&id=1x_gUWMIJzEy2UiMvFdMxxEmBYnuDTRPJ"  width="500" height="auto">
   </p>
-  <p float="center">
+  <p align="center">
    <img src="https://drive.google.com/uc?export=view&id=1OmyXPNkj2dvG5EA6vBoXsbQsp4kt3jrL"  width="500" height="auto">
   </p>
   
@@ -50,7 +50,7 @@ baseURL = "http://127.0.0.1:<your port>"
     * The app will scrape the website looking for text as context and try to responde the question.
     * A more realistic scenario, having a question that could be responded with the text from a website.
 
-  <p float="center">
+  <p align="center">
    <img src="https://drive.google.com/uc?export=view&id=1GUTLsFWYCa7dTkLD-q46bEKMldYAoA4w"  width="500" height="auto">
   <img src="https://drive.google.com/uc?export=view&id=1XPF0GFbVFpsKEh0afiu7moc_8io8mKFd"  width="500" height="auto">
   </p>
