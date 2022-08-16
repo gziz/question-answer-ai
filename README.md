@@ -1,6 +1,6 @@
 # Question Answering AI
 
-Application that implements the BERT transformer model to retrieve a text(context) and answer questions.
+Web application implementing the BERT transformer model to retrieve a text(context) and answer questions.
 BERT is an open source model that has been pretrained with wikipidea for NLP tasks such as text classification and Q&A.
 
 ## Get Started
