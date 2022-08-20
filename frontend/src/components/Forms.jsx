@@ -59,7 +59,7 @@ const Form = (props) => {
 
         <div className="flex items-center mb-4">
             <input checked={props.storeQuery} onChange={(e) => props.setStoreQuery(e.target.checked)} id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300"/>
-            <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Save my query</label>
+            <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 text-gray-300">Save my query</label>
         </div>
 
         <div className= {"mb-2 text-sm text-right"}>
