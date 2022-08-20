@@ -16,7 +16,7 @@ const NavBar = (props) => {
       };
 
     return (                
-            <div className="fixed top-0 w-screen h-14
+            <div className="top-0 w-screen h-14
                             flex flex-row space-x-10
                             bg-slate-800 p-6
                             justify-start">

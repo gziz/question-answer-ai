@@ -92,8 +92,8 @@ const Home = () => {
     return (
       <>
         <NavBar setContextType={setContextType} navChange={navChange}/>
-        <div className="h-screen flex scale-[.85]">
-            <div className="max-w-xl m-auto p-5 mt-10">
+        <div className=" flex scale-[0.85]">
+            <div className="max-w-xl h-5/6 m-auto p-5">
                 <div className="bg-slate-800 p-6 rounded-md text-white">
                     <div className="text-center my-6">
                         <h1 className="text-3xl">Question Answering AI</h1>
