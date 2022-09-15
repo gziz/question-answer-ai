@@ -6,7 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from cassandra.cqlengine.management import sync_table
 from cassandra.query import SimpleStatement
 
-from . import ai, schema, db_models, db
+#from . import ai, schema, db_models, db
+import ai, schema, db_models, db, scrape
 
 QAModel = db_models.QAModel
 

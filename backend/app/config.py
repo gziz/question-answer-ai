@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 
 
     class Config: ### 3
-        env_file = '.env' ##4 Differs from production
+        env_file = '../.env' ##4 Differs from production
 
 
 @lru_cache
