@@ -1,7 +1,7 @@
 # # For production
-from . import config
+#from . import config
 # For local
-#import config
+import config
 
 import pathlib
 from cassandra.cluster import Cluster
