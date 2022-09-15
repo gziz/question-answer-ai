@@ -9,7 +9,7 @@ class ScrapeUrl:
     def get_bs_obj(self):
         "Extract the html and create a BSoup obj from it."
         html = urlopen(self.url)
-        bsObj = BeautifulSoup(html)
+        bsObj = BeautifulSoup(html, features="html.parser")
         return bsObj
 
 
@@ -17,7 +17,7 @@ class ScrapeUrl:
         bsObj = self.get_bs_obj()
 
         context=""
-        for item in bsObj.find_all(['p', 'li', 'span']):
+        for item in bsObj.find_all(['p', 'span']):
 
             item_text = item.get_text()
 
