@@ -3,10 +3,11 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from cassandra.cqlengine.management import sync_table
-from cassandra.query import SimpleStatement
+#from cassandra.cqlengine.management import sync_table
+#from cassandra.query import SimpleStatement
 
-from . import ai, schema, db_models, db, scrape
+from . import ai, schema, db_models, scrape
+#from . import db
 
 QAModel = db_models.QAModel
 
@@ -24,8 +25,8 @@ app.add_middleware(
 def on_startup():
     global AI_MODEL, DB_SESSION
     AI_MODEL = ai.get_model()
-    DB_SESSION = db.get_session()
-    sync_table(QAModel)
+    #DB_SESSION = db.get_session()
+    #sync_table(QAModel)
 
 @app.get("/")
 def read_root():
@@ -54,7 +55,7 @@ def predict(req: schema.Request):
             "answer" : res["answer"],
             "score": res["score"]}
     
-    obj = QAModel.objects.create(**data)
+    #obj = QAModel.objects.create(**data)
 
     return {"data": data}
 
