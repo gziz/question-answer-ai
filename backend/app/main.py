@@ -98,7 +98,7 @@ async def upload_file(file: UploadFile):
 
     file_path = getcwd() + '/' + file.filename
 
-    with open(file.filename, "wb") as buffer:
+    with open(file_path, "wb") as buffer:
         content = await file.read()
         buffer.write(content)
         buffer.close()
