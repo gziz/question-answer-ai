@@ -1,14 +1,15 @@
-
+from stat import FILE_ATTRIBUTE_ARCHIVE
+from typing import Union, List, Optional
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from os import getcwd
 
 from cassandra.cqlengine.management import sync_table
 from cassandra.query import SimpleStatement
 
 #from . import ai, schema, db_models, db
-import ai, schema, db_models, db, scrape
-
+import ai, schema, db_models, db, scrape, utils
 QAModel = db_models.QAModel
 
 app = FastAPI()
@@ -40,11 +41,31 @@ def show_records():
     return list(data)
 
 
-@app.post("/question-text")
-def predict(req: schema.Request):
+# @app.post("/question-text")
+# def question_text(req: schema.Request):
 
-    context = req.data['context']
-    question = req.data['question']
+#     context = req.data['context']
+#     question = req.data['question']
+#     input_model = {"question":question,
+#                   "context":context}
+
+#     res = AI_MODEL(input_model)
+
+#     data = {"question":question,
+#             "context": context,
+#             "answer" : res["answer"],
+#             "score": res["score"]}
+    
+#     obj = QAModel.objects.create(**data)
+
+#     return {"data": data}
+
+
+@app.post("/question-text")
+def question_text(req: schema.Request2):
+
+    context = req.context
+    question = req.question
     input_model = {"question":question,
                   "context":context}
 
@@ -54,17 +75,18 @@ def predict(req: schema.Request):
             "context": context,
             "answer" : res["answer"],
             "score": res["score"]}
-    
-    obj = QAModel.objects.create(**data)
+
+    if req.storeQuery:
+        obj = QAModel.objects.create(**data)
 
     return {"data": data}
 
 
 @app.post("/question-url")
-def predict(req: schema.Request):
+def question_url(req: schema.Request):
 
-    url = req.data['context']
-    question = req.data['question']
+    url = req.context
+    question = req.question
 
     context = scrape.scrape_url(url)
 
@@ -80,3 +102,33 @@ def predict(req: schema.Request):
     
 
     return {"data": data}
+
+
+@app.post("/question-file")
+async def question_file(req: schema.QuestionOnly):
+    question = req.question
+
+    data = {"question":question,
+        "context": 'context',
+        "answer" : '42',
+        "score": 100}
+
+    return {"data": data}
+
+
+@app.post("/upload_file")
+async def upload_file(file: UploadFile):
+    global PROCESSED_FILE
+
+    file_path = getcwd() + '/' + file.filename
+
+    with open(file_path, "wb") as buffer:
+        content = await file.read()
+        buffer.write(content)
+        buffer.close()
+
+    utils.process_file(file_path)
+    
+    return {"filename": file.filename}
+
+
