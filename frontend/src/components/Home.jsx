@@ -52,10 +52,9 @@ const Home = () => {
         let formData;
         formData = new FormData();
         formData.append("file", context);
-        console.log(context);
         const res = await axiosManager.post(endpoint, formData);
-        setIsLoading(false);
         console.log(res.data)
+        setIsLoading(false);
       }catch(err){
         console.log(err.message);
       }
