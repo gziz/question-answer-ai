@@ -59,7 +59,7 @@ def show_records():
 
 
 @app.post("/question-text")
-def question_text(req: schema.Request2):
+def question_text(req: schema.Request):
 
     context = req.context
     question = req.question
