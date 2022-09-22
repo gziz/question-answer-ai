@@ -98,13 +98,13 @@ async def upload_file(file: UploadFile):
 
     file_path = getcwd() + '/' + file.filename
 
-    with open(file_path, "wb") as buffer:
+    with open(file.filename, "wb") as buffer:
         content = await file.read()
         buffer.write(content)
         buffer.close()
     
     utils.process_file(file_path)
     
-    return {"filename": file.filename, "filepath": file_path}
+    return {"filename": file.filename, "filepath": file.filename}
 
 
