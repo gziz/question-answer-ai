@@ -37,27 +37,6 @@ def show_records():
     data = DB_SESSION.execute(query)
     return list(data)
 
-
-# @app.post("/question-text")
-# def question_text(req: schema.Request):
-
-#     context = req.data['context']
-#     question = req.data['question']
-#     input_model = {"question":question,
-#                   "context":context}
-
-#     res = AI_MODEL(input_model)
-
-#     data = {"question":question,
-#             "context": context,
-#             "answer" : res["answer"],
-#             "score": res["score"]}
-    
-#     obj = QAModel.objects.create(**data)
-
-#     return {"data": data}
-
-
 @app.post("/question-text")
 def question_text(req: schema.Request):
 
