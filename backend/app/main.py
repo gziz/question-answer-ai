@@ -1,7 +1,4 @@
-from stat import FILE_ATTRIBUTE_ARCHIVE
-from typing import Union, List, Optional
-from pydantic import BaseModel
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from os import getcwd
 
