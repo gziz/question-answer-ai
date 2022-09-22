@@ -5,27 +5,38 @@ import Results from "./Results.jsx";
 import NavBar from "./NavBar.jsx"
 
 const Home = () => { 
-    const [tmpContext, setTmpContext] = React.useState("");
-    const [context, setContext] = React.useState("");
+    // const [tmpContext, setTmpContext] = React.useState("");
+    const [context, setContext] = React.useState();
     const [question, setQuestion] = React.useState("");
-    const [answer, setAnswer] = React.useState("");
+    const [answer, setAnswer] = React.useState(""); 
     const [hasResult, setHasResult] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [contextType, setContextType] = React.useState("question-text");
+    const [contextType, setContextType] = React.useState("question-text"); 
     const [storeQuery, setStoreQuery] = React.useState(true);
+
+    let formData;
+    if (contextType === "question-file"){
+
+      formData =  {
+        "question": question
+      }
+
+
+    }else{
+      formData =  {
+        "question": question,
+        "context": context,
+        "storeQuery": storeQuery
+      }
+    }
 
     const onSubmit = async () => {
       try{
-        console.log(storeQuery);
         console.log("Submitting");
         setIsLoading(true);
         
         const endpoint = `/${contextType}`
-        const res = await axiosManager.post(endpoint, {
-          "data": {"question": question,
-                    "context": context,
-                  "storeQuery": storeQuery}
-        });
+        const res = await axiosManager.post(endpoint, formData);
         onResult(res.data)
       
       }catch(err){
@@ -33,14 +44,30 @@ const Home = () => {
       }
     }
 
+    const uploadFile = async () => {
+      try{
+        setIsLoading(true);
+        const endpoint = "/upload_file";
+
+        let formData;
+        formData = new FormData();
+        formData.append("file", context);
+        console.log(context);
+        const res = await axiosManager.post(endpoint, formData);
+        setIsLoading(false);
+      }catch(err){
+        console.log(err.message);
+      }
+    }
+
     // Cuando el result llegue del api:
     const onResult = (data) => {
-        setTmpContext(context);
+        // setTmpContext(context);
 
-        const modified_context = data.data.context.replace(
-            data.data.answer, '--->' + data.data.answer + '<---'
-        );
-        setContext(modified_context);
+        // const modified_context = data.data.context.replace(
+        //     data.data.answer, '--->' + data.data.answer + '<---'
+        // );
+        setContext(context);
         setAnswer(data.data.answer);
         setHasResult(true);
         setIsLoading(true);
@@ -48,7 +75,7 @@ const Home = () => {
 
     // Cuando le demos back al boton en resultados:
     const onReset = (data) => {
-        setContext(tmpContext);
+        setContext(context);
         setHasResult(false);
         setIsLoading(false);
 
@@ -85,6 +112,7 @@ const Home = () => {
         isLoading={isLoading}
         setStoreQuery={setStoreQuery}
         storeQuery={storeQuery}
+        uploadFile={uploadFile}
       />
     );
     }

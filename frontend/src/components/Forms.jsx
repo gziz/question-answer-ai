@@ -1,3 +1,4 @@
+import FileUploader from "./FileUploader.jsx"
 
 const Form = (props) => { 
 
@@ -5,6 +6,7 @@ const Form = (props) => {
         const text = e.currentTarget.value;
           props.setContext(text);
       };
+
     const updateQuestionValue = (e) => {
         const text = e.currentTarget.value;
           props.setQuestion(text);
@@ -12,7 +14,6 @@ const Form = (props) => {
     
     let contextInput = <></>;
     if (props.contextType === "question-text") {
-
       contextInput = (
         <>
         <div className="mb-6 text-slate-200">
@@ -27,7 +28,7 @@ const Form = (props) => {
         ></textarea>
         </>
       );
-    } else {
+    } else if (props.contextType === "question-url") {
       contextInput = (
         <>
           <div className="mb-6 text-slate-200">
@@ -42,7 +43,25 @@ const Form = (props) => {
           ></textarea>
         </>
       );
+      } else{
+        contextInput = (
+          <>
+          <div className="mb-6 text-slate-200">
+            <p>Give me a context as a file. I will read it and try to answer ...</p>
+            <p>Available formats: .pdf, .txt</p>
+
+          </div>
+
+          <label className="">Context as a File</label>
+          <FileUploader
+            setContext={props.setContext}
+            uploadFile={props.uploadFile}
+            />
+
+          </>
+        )
       }
+
 
     return (
 
