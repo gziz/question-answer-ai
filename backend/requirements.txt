@@ -12,3 +12,4 @@ uvicorn
 boto3
 bs4
 PyPDF2
+python-multipart
