@@ -108,3 +108,17 @@ async def upload_file(file: UploadFile):
     return {"filename": file.filename, "filepath": file.filename}
 
 
+@app.post("/upload_file")
+async def upload_file(file: UploadFile):
+    global PROCESSED_FILE
+
+    file_path = getcwd() + '/' + file.filename
+
+    with open(file.filename, "wb") as buffer:
+        content = await file.read()
+        buffer.write(content)
+        buffer.close()
+    
+    pages = utils.process_file(file_path)
+    
+    return {"filename": file.filename, "filepath": file.filename, "pages": pages}

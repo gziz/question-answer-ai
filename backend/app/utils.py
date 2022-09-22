@@ -22,8 +22,6 @@ def process_file(file_path):
         pdfFileObj = open(file_path, 'rb')
         # creating a pdf reader object
         pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-        # printing number of pages in pdf file
-        print(pdfReader.numPages)
 
         for page in range(pdfReader.numPages):
             pageObj = pdfReader.getPage(page)
@@ -32,4 +30,5 @@ def process_file(file_path):
 
             with open(new_file_path, 'a') as f:
                 f.write(text)
-        
+
+        return pdfReader.numPages
