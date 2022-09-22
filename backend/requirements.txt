@@ -10,3 +10,4 @@ pypyr
 python-dotenv
 uvicorn
 boto3
+bs4
