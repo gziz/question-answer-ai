@@ -38,7 +38,7 @@ const Home = () => {
         const endpoint = `/${contextType}`
         const res = await axiosManager.post(endpoint, formData);
         onResult(res.data)
-      
+        
       }catch(err){
         console.log(err.message);
       }
@@ -55,6 +55,7 @@ const Home = () => {
         console.log(context);
         const res = await axiosManager.post(endpoint, formData);
         setIsLoading(false);
+        console.log(res.data)
       }catch(err){
         console.log(err.message);
       }
