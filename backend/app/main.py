@@ -102,9 +102,9 @@ async def upload_file(file: UploadFile):
         content = await file.read()
         buffer.write(content)
         buffer.close()
-
+    
     utils.process_file(file_path)
     
-    return {"filename": file.filename}
+    return {"filename": file.filename, "filepath": file_path}
 
 
