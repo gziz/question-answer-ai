@@ -2,6 +2,7 @@ FROM codingforentrepreneurs/python:3.9-webapp-cassandra
 
 
 COPY ./requirements.txt /app/requirements.txt
+COPY ./pipelines /app/pipelines
 WORKDIR /app
 RUN python3 -m venv /opt/venv && /opt/venv/bin/python -m pip install -r requirements.txt
 RUN /opt/venv/bin/python -m pypyr /app/pipelines/model-download
