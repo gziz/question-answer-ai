@@ -120,6 +120,7 @@ async def upload_file(file: UploadFile):
         buffer.close()
     
     pages = utils.process_file(file_path)
+    pages = 100
+
     
     return {"filename": file.filename, "filepath": file.filename, "pages": pages}
-    
