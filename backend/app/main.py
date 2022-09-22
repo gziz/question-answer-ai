@@ -5,8 +5,8 @@ from os import getcwd
 from cassandra.cqlengine.management import sync_table
 from cassandra.query import SimpleStatement
 
-#from . import ai, schema, db_models, db
-import ai, schema, db_models, db, scrape, utils
+from . import ai, schema, db_models, db, scrape, utils
+#import ai, schema, db_models, db, scrape, utils
 QAModel = db_models.QAModel
 
 app = FastAPI()
