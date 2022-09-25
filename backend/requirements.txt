@@ -1,15 +1,15 @@
 requests
--f https://download.pytorch.org/whl/torch_stable.html
-torch==1.8.0+cpu
-transformers==4.2.2
+# -f https://download.pytorch.org/whl/torch_stable.html
+# torch==1.8.0+cpu
+# transformers==4.2.2
 
-cassandra-driver
-fastapi
-gunicorn
-pypyr
-python-dotenv
-uvicorn
-boto3
-bs4
-PyPDF2
-python-multipart
+# cassandra-driver
+# fastapi
+# gunicorn
+# pypyr
+# python-dotenv
+# uvicorn
+# boto3
+# bs4
+# PyPDF2
+# python-multipart
