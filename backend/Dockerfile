@@ -1,7 +1,7 @@
 FROM codingforentrepreneurs/python:3.9-webapp-cassandra
 
 COPY ./requirements.txt /qa_proj/requirements.txt
-COPY ./pipelines /qa_proj/app/pipelines
+COPY ./pipelines /qa_proj/pipelines
 
 # Inside image's app folder
 WORKDIR /qa_proj
