@@ -1,5 +1,5 @@
-FROM codingforentrepreneurs/python:3.9-webapp-cassandra
-
+# FROM codingforentrepreneurs/python:3.9-webapp-cassandra
+FROM python:3.9
 
 COPY ./requirements.txt /qa_proj/requirements.txt
 COPY ./pipelines /qa_proj/app/pipelines
@@ -21,7 +21,5 @@ COPY ./app ./app
 COPY ./entrypoint.sh ./entrypoint.sh
 
 RUN chmod +x entrypoint.sh
-
-
 
 CMD ["./entrypoint.sh"]
