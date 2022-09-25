@@ -1,4 +1,5 @@
-FROM codingforentrepreneurs/python:3.9-webapp-cassandra
+#FROM codingforentrepreneurs/python:3.9-webapp-cassandra
+FROM python:3.9
 
 COPY ./requirements.txt /qa_proj/requirements.txt
 COPY ./pipelines /qa_proj/pipelines
@@ -6,8 +7,8 @@ COPY ./pipelines /qa_proj/pipelines
 # Inside image's app folder
 WORKDIR /qa_proj
 RUN python3 -m venv /opt/venv && /opt/venv/bin/python -m pip install -r requirements.txt
-# RUN /opt/venv/bin/python -m pypyr /app/pipelines/model-download
-# RUN /opt/venv/bin/python -m pypyr /app/pipelines/bundle-download
+RUN /opt/venv/bin/python -m pypyr pipelines/model-download
+RUN /opt/venv/bin/python -m pypyr pipelines/bundle-download
 
 # WORKDIR /
 # COPY .env /app/.env
