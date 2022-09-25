@@ -5,11 +5,11 @@ requests
 
 # cassandra-driver
 # fastapi
-# gunicorn
-# pypyr
-# python-dotenv
-# uvicorn
-# boto3
+gunicorn
+pypyr
+python-dotenv
+uvicorn
+boto3
 # bs4
 # PyPDF2
 # python-multipart
