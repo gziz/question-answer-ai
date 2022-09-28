@@ -5,7 +5,7 @@ import Results from "./Results.jsx";
 import NavBar from "./NavBar.jsx"
 
 const Home = () => { 
-    const [context, setContext] = React.useState();
+    const [context, setContext] = React.useState(undefined);
     const [question, setQuestion] = React.useState("");
     const [answer, setAnswer] = React.useState(""); 
     const [hasResult, setHasResult] = React.useState(false);
@@ -15,12 +15,13 @@ const Home = () => {
 
     let formData;
     if (contextType === "question-file"){
-
+      
       formData =  {
-        "question": question
+        "question": question,
+        "file_name": context === undefined? "": context.name
       }
 
-
+      console.log(formData)
     }else{
       formData =  {
         "question": question,
@@ -33,7 +34,6 @@ const Home = () => {
       try{
         console.log("Submitting");
         setIsLoading(true);
-        
         const endpoint = `/${contextType}`
         const res = await axiosManager.post(endpoint, formData);
         onResult(res.data)
@@ -62,7 +62,7 @@ const Home = () => {
     // Cuando el result llegue del api:
     const onResult = (data) => {
 
-        //setContext(context);
+        setContext(data.data.context);
         setAnswer(data.data.answer);
         setHasResult(true);
         setIsLoading(true);
@@ -70,7 +70,8 @@ const Home = () => {
 
     // Cuando le demos back al boton en resultados:
     const onReset = (data) => {
-        //setContext(context);
+        console.log(context);
+        setContext(context);
         setHasResult(false);
         setIsLoading(false);
 
@@ -85,7 +86,8 @@ const Home = () => {
   
     // Hace render al forms o a la seccion de resultados
     let displayedElement = <></>;
-    if (hasResult) {
+    if (hasResult) {    
+      console.log(context);
       displayedElement = (
         <Results
           context={context}

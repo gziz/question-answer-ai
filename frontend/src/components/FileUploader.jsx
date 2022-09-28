@@ -23,7 +23,6 @@ const FileUploader = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Uploading')
     props.uploadFile();
     setUploaded(true);
   };

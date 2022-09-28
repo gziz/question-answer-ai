@@ -2,7 +2,6 @@
 
     let contextInput = <></>
     if (props.contextType === "question-text") {
-
         contextInput = (
             <>
                 
@@ -19,14 +18,14 @@
             </>
 
         );
-      } else {
+      } else if (props.contextType === "question-url") {
         
         contextInput = (
             <>
                 <div className="mb-6 text-slate-200">
-                    <p>Give me a context (paragraph/sentence) and a question. I will try to answer ...</p>
+                    <p>Answers came from the following passages</p>
                 </div>
-                <label className="">Context as Text</label>
+                <label className="">Context as URL</label>
                 <textarea
                     className="h-48 bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3"
                     type="text" readOnly
@@ -34,6 +33,21 @@
                 >{props.context}</textarea>
             </>
         );
+        } else{
+            console.log(props.context)
+            console.log(props.answer)
+            contextInput = (
+                <>
+                <div className="bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3">              
+                    <div className="text-slate-400 font-bold text-sm">
+                        Answers came from the following passages
+                </div>
+                    <ul>
+                        {props.context.map(ans => <li>* {ans}</li>)}
+                    </ul>
+                </div>
+                </>
+            );  
         }
 
       return (
@@ -50,10 +64,12 @@
                 </div>
 
                 <div className="bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3">              
-                <div className="text-slate-400 font-bold text-sm">
-                    Answer
+                    <div className="text-slate-400 font-bold text-sm">
+                        Answer
                 </div>
-                    {props.answer}
+                    <ul>
+                        {props.answer.map(ans => <li>* {ans}</li>)}
+                    </ul>
                 </div>
 
           </div>

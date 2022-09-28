@@ -50,7 +50,7 @@ def question_text(req: schema.Request):
 
     data = {"question":question,
             "context": context,
-            "answer" : res["answer"],
+            "answer" : [res["answer"]],
             "score": res["score"]}
 
     # if req.storeQuery:
@@ -74,7 +74,7 @@ def question_url(req: schema.Request):
 
     data = {"question":question,
         "context": context,
-        "answer" : res["answer"],
+        "answer" : [res["answer"]],
         "score": res["score"]}
     
 
@@ -92,7 +92,6 @@ async def question_file(req: schema.FileSchema):
         "context": documents,
         "answer" :  answers,
         "score": 100}
-    print(data)
     #return {"ans": answers, 'docs': documents}
     return {'data': data}
 
