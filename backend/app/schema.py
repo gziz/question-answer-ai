@@ -5,5 +5,6 @@ class Request(BaseModel):
     context: str
     storeQuery: bool
 
-class QuestionOnly(BaseModel):
+class FileSchema(BaseModel):
     question: str
+    file_name: str
