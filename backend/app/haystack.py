@@ -30,6 +30,7 @@ def load_elastic(text_stream):
                                     index = "naval")
 
     doc_store.write_documents(data_json)
+    print('LOADED')
     return 'OK'
 
 def get_document_store(index: str):
@@ -42,6 +43,7 @@ def get_document_store(index: str):
 
 
 def retrieve(query, index):
+    print('Retriving')
     document_store = get_document_store(index)
     retriever = BM25Retriever(document_store=document_store)
     
@@ -52,5 +54,5 @@ def retrieve(query, index):
     )
     answers = [ans.answer for ans in predictions['answers']]
     documents = [doc.content for doc in predictions['documents']]
-
+    print(answers)
     return answers, documents

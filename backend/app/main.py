@@ -90,10 +90,11 @@ async def question_file(req: schema.FileSchema):
 
     data = {"question":question,
         "context": 'context',
-        "answer" : '42',
+        "answer" :  answers,
         "score": 100}
-
-    return {"ans": answers, 'docs': documents}
+    print(data)
+    #return {"ans": answers, 'docs': documents}
+    return {'data': data}
 
 
 @app.post("/upload_file")
