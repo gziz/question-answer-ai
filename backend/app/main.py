@@ -1,12 +1,12 @@
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from os import getcwd
+import os
 
 # from cassandra.cqlengine.management import sync_table
 # from cassandra.query import SimpleStatement
 
 #from . import ai, schema, db_models, db, scrape, utils
-from . import ai, schema, scrape, utils
+from . import ai, schema, scrape, utils, haystack
 #import ai, schema, db_models, db, scrape, utils
 # QAModel = db_models.QAModel
 
@@ -82,29 +82,26 @@ def question_url(req: schema.Request):
 
 
 @app.post("/question-file")
-async def question_file(req: schema.QuestionOnly):
+async def question_file(req: schema.FileSchema):
     question = req.question
+    index, _ = os.path.splitext(req.file_name)
+
+    answers, documents = haystack.retrieve(question, index)
 
     data = {"question":question,
         "context": 'context',
         "answer" : '42',
         "score": 100}
 
-    return {"data": data}
+    return {"ans": answers, 'docs': documents}
 
 
 @app.post("/upload_file")
 async def upload_file(file: UploadFile):
-    global PROCESSED_FILE
-
-    file_path = getcwd() + '/' + file.filename
-
-    with open(file_path, "wb") as buffer:
-        content = await file.read()
-        buffer.write(content)
-        buffer.close()
     
-    pages = utils.process_file(file_path)
+    FILE_PATH = os.getcwd() + '/' + file.filename
 
+    text_stream = await utils.process_file(file, FILE_PATH)
     
-    return {"filename": file.filename, "filepath": file.filename, "pages": pages}
+    status = haystack.load_elastic(text_stream)
+    return {"filename": file.filename, "filepath":FILE_PATH, "status": status}

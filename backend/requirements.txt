@@ -1,9 +1,11 @@
-requests
--f https://download.pytorch.org/whl/torch_stable.html
-torch==1.8.0+cpu
-transformers==4.2.2
 
+# -f https://download.pytorch.org/whl/torch_stable.html
+# torch==1.8.0+cpu
+# transformers==4.2.2
 # cassandra-driver
+
+requests
+farm-haystack
 fastapi
 gunicorn
 pypyr

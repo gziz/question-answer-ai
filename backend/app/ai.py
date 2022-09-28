@@ -9,11 +9,11 @@ from transformers import pipeline
 
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
-BERT_MODEL_PATH = BASE_DIR / "ai-models" / "bert-base-cased-squad2"
+QA_MODEL_PATH = BASE_DIR / "ai-models" / "bert-base-cased-squad2"
 
 def get_model():
-    model = BertForQuestionAnswering.from_pretrained(BERT_MODEL_PATH)
-    tokenizer = AutoTokenizer.from_pretrained(BERT_MODEL_PATH)
+    model = BertForQuestionAnswering.from_pretrained(QA_MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(QA_MODEL_PATH)
     nlp = pipeline('question-answering', model=model, tokenizer=tokenizer)
 
     return nlp

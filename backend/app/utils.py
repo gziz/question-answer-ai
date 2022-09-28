@@ -1,3 +1,4 @@
+import io
 import re
 import PyPDF2
 import os
@@ -11,24 +12,32 @@ def process_text(text):
   text = re.sub(r"/^[A-Za-z\/\s\.'-]+$/", '', text)
   return text
 
-def process_file(file_path):
+async def process_file(file, file_path):
+
     file_name, ext = os.path.splitext(file_path)
 
-    if ext == '.txt':
-        pass
+    # if ext == '.txt':
+    #     pass
 
     if ext == '.pdf':
-        new_file_path = file_name + '.txt'
-        pdfFileObj = open(file_path, 'rb')
-        # creating a pdf reader object
-        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 
+        file_content = await file.read()
+        file_content = io.BytesIO(file_content)
+    
+        pdfReader = PyPDF2.PdfFileReader(file_content)
+        
+        text_str = ""
         for page in range(pdfReader.numPages):
             pageObj = pdfReader.getPage(page)
             text = pageObj.extractText()
             text = process_text(text)
+            text_str += text
 
-            with open(new_file_path, 'a') as f:
-                f.write(text)
 
-        return pdfReader.numPages
+        text_splitted = text_str.split('.') 
+        span = 3
+        text_stream = [(".".join(text_splitted[i:i+span])+".").strip()
+                        for i in range(0, len(text_splitted), span)]
+
+    return text_stream
+    

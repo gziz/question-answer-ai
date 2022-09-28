@@ -1,0 +1,29 @@
+context_parser: pypyr.parser.keyvaluepairs
+steps:
+
+  - name: pypyr.steps.py
+    in:
+      py: |
+
+        import boto3
+        import os 
+        import pathlib
+        from dotenv import load_dotenv
+        load_dotenv() 
+
+        local_model_dir = "ai-models/"
+        s3_dirname = "haystack-bert-base-cased-squad2"
+
+        destination_path = pathlib.Path(local_model_dir).resolve()
+        destination_path_s3 = destination_path / s3_dirname
+        destination_path_s3.mkdir(exist_ok=True, parents=True)
+
+        s3_resource = boto3.resource('s3')
+        bucket = s3_resource.Bucket(os.environ.get('BUCKET_NAME'))
+
+        for obj in bucket.objects.filter(Prefix = 'haystack-bert-base-cased-squad2/'):
+            if obj.key[-1] != '/':
+                
+                destination_file_path = destination_path / obj.key
+
+                bucket.download_file(obj.key, str(destination_file_path))
