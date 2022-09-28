@@ -43,7 +43,7 @@ def get_document_store(index: str):
 
 
 def retrieve(query, index):
-    print('Retriving')
+
     document_store = get_document_store(index)
     retriever = BM25Retriever(document_store=document_store)
     

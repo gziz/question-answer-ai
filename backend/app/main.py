@@ -89,7 +89,7 @@ async def question_file(req: schema.FileSchema):
     answers, documents = haystack.retrieve(question, index)
 
     data = {"question":question,
-        "context": 'context',
+        "context": documents,
         "answer" :  answers,
         "score": 100}
     print(data)
