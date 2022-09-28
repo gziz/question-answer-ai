@@ -5,7 +5,6 @@ import Results from "./Results.jsx";
 import NavBar from "./NavBar.jsx"
 
 const Home = () => { 
-    // const [tmpContext, setTmpContext] = React.useState("");
     const [context, setContext] = React.useState();
     const [question, setQuestion] = React.useState("");
     const [answer, setAnswer] = React.useState(""); 
@@ -62,11 +61,7 @@ const Home = () => {
 
     // Cuando el result llegue del api:
     const onResult = (data) => {
-        // setTmpContext(context);
 
-        // const modified_context = data.data.context.replace(
-        //     data.data.answer, '--->' + data.data.answer + '<---'
-        // );
         //setContext(context);
         setAnswer(data.data.answer);
         setHasResult(true);
@@ -75,7 +70,7 @@ const Home = () => {
 
     // Cuando le demos back al boton en resultados:
     const onReset = (data) => {
-        setContext(context);
+        //setContext(context);
         setHasResult(false);
         setIsLoading(false);
 
