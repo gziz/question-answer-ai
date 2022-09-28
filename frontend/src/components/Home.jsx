@@ -65,12 +65,12 @@ const Home = () => {
         setContext(data.data.context);
         setAnswer(data.data.answer);
         setHasResult(true);
-        setIsLoading(true);
+        setIsLoading(false);
     };
 
     // Cuando le demos back al boton en resultados:
     const onReset = (data) => {
-        console.log(context);
+
         setContext(context);
         setHasResult(false);
         setIsLoading(false);

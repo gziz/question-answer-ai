@@ -1,4 +1,5 @@
 import FileUploader from "./FileUploader.jsx"
+import BeatLoader from "react-spinners/BeatLoader"
 
 const Form = (props) => { 
 
@@ -62,9 +63,23 @@ const Form = (props) => {
         )
       }
 
+      const SubmitButton= (
+        <button 
+        type="submit"
+        className="bg-indigo-900 disabled:opacity-50 w-full p-2 rounded-md text-lg hover:bg-indigo-800"
+        onClick={props.onSubmit}
+        >
+          Submit</button>
+      )
+
+      const BarLoader = (
+        <div className="text-center">
+        <BeatLoader color="#e9eeed"/>
+        </div>
+      )
+
 
     return (
-
         <>
         {contextInput}
 
@@ -85,13 +100,8 @@ const Form = (props) => {
           Powered by Hugging Face
         </div>
 
-        <button 
-        type="submit"
-        className="bg-indigo-900 disabled:opacity-50 w-full p-2 rounded-md text-lg hover:bg-indigo-800"
-        onClick={props.onSubmit}
-        >
-            Submit</button>
-            
+        {props.isLoading? BarLoader: SubmitButton}
+
         </>
     )
 };
