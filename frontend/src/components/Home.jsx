@@ -67,7 +67,7 @@ const Home = () => {
         // const modified_context = data.data.context.replace(
         //     data.data.answer, '--->' + data.data.answer + '<---'
         // );
-        setContext(context);
+        //setContext(context);
         setAnswer(data.data.answer);
         setHasResult(true);
         setIsLoading(true);
