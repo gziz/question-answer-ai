@@ -12,9 +12,7 @@ def process_text(text):
   text = re.sub(r"/^[A-Za-z\/\s\.'-]+$/", '', text)
   return text
 
-async def process_file(file, file_path):
-
-    file_name, ext = os.path.splitext(file_path)
+async def process_file(file, file_name, ext):
 
     # if ext == '.txt':
     #     pass

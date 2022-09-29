@@ -100,11 +100,10 @@ async def question_file(req: schema.FileSchema):
 @app.post("/upload_file")
 async def upload_file(file: UploadFile):
     
-    FILE_PATH = os.getcwd() + '/' + file.filename
+    file_name, ext = os.path.splitext(file.filename)
 
-    text_stream = await utils.process_file(file, FILE_PATH)
-
+    text_stream = await utils.process_file(file, file_name, ext)
     
-    #status = haystack.load_elastic(text_stream)
-    #return {"filename": file.filename, "filepath":FILE_PATH, "status": status}
-    return {"filename": file.filename, "filepath":FILE_PATH, "text": text_stream[-1]}
+    status = haystack.load_elastic(text_stream, file_name)
+
+    return {"filename": file_name, "status": status}

@@ -19,7 +19,7 @@ def process_for_elastic(text_stream):
     return data_json
 
 
-def load_elastic(text_stream):
+def load_elastic(text_stream, file_name):
 
     data_json = process_for_elastic(text_stream)
 
@@ -27,10 +27,9 @@ def load_elastic(text_stream):
                                     port = 9200, 
                                     username = "", 
                                     password = "", 
-                                    index = "naval")
+                                    index = file_name)
 
     doc_store.write_documents(data_json)
-    print('LOADED')
     return 'OK'
 
 def get_document_store(index: str):
@@ -54,5 +53,4 @@ def retrieve(query, index):
     )
     answers = [ans.answer for ans in predictions['answers']]
     documents = [doc.content for doc in predictions['documents']]
-    print(answers)
     return answers, documents
