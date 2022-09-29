@@ -1,3 +1,4 @@
+from cgitb import text
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import os
@@ -102,6 +103,8 @@ async def upload_file(file: UploadFile):
     FILE_PATH = os.getcwd() + '/' + file.filename
 
     text_stream = await utils.process_file(file, FILE_PATH)
+
     
-    status = haystack.load_elastic(text_stream)
-    return {"filename": file.filename, "filepath":FILE_PATH, "status": status}
+    #status = haystack.load_elastic(text_stream)
+    #return {"filename": file.filename, "filepath":FILE_PATH, "status": status}
+    return {"filename": file.filename, "filepath":FILE_PATH, "text": text_stream[-1]}
