@@ -35,7 +35,7 @@ const FileUploader = (props) => {
   const myRemoveFile = (name) =>{
     removeFile(name);
     setUploaded(false);
-    props.setContext(null);
+    props.setContext(undefined);
   }
 
   let fileHelpers = <></>;
