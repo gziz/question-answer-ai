@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import useFileUpload from 'react-use-file-upload';
 
-
 const FileUploader = (props) => {
   const {
     files,
