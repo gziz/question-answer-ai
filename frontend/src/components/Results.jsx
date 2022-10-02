@@ -34,8 +34,6 @@
             </>
         );
         } else{
-            console.log(props.context)
-            console.log(props.answer)
             contextInput = (
                 <>
                 <div className="bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3">              
@@ -43,7 +41,7 @@
                         Answers came from the following passages
                 </div>
                     <ul>
-                        {props.context.map(ans => <li>* {ans}  <br />  </li>)}
+                        {props.context.map(doc => <> <li>* {doc}  </li> <br /> </>)  }
                     </ul>
                 </div>
                 </>
@@ -68,7 +66,7 @@
                         Answer
                 </div>
                     <ul>
-                        {props.answer.map(ans => <li>* {ans} <br /> </li>)}
+                        {props.answer.map(ans => <li>* {ans} </li>)}
                     </ul>
                 </div>
 
