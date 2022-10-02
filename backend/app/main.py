@@ -93,7 +93,7 @@ async def question_file(req: schema.FileSchema):
         "context": documents,
         "answer" :  answers,
         "score": 100}
-    #return {"ans": answers, 'docs': documents}
+
     return {'data': data}
 
 

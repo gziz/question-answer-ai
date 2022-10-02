@@ -68,7 +68,7 @@
                         Answer
                 </div>
                     <ul>
-                        {props.answer.map(ans => <li>* {ans}</li>)}
+                        {props.answer.map(ans => <li>* {ans} \n</li>)}
                     </ul>
                 </div>
 
