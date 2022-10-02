@@ -49,7 +49,7 @@ def retrieve(query, index):
     pipe = ExtractiveQAPipeline(reader, retriever)
 
     predictions = pipe.run(
-      query=query, params={"Retriever": {"top_k": 2}, "Reader": {"top_k": 2}}
+      query=query, params={"Retriever": {"top_k": 1}, "Reader": {"top_k": 1}}
     )
     answers = [ans.answer for ans in predictions['answers']]
     documents = [doc.content for doc in predictions['documents']]

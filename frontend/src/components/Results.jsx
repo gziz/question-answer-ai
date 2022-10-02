@@ -41,7 +41,7 @@
                         Answers came from the following passages
                 </div>
                     <ul>
-                        {props.context.map(doc => <> <li>* {doc}  </li> <br /> </>)  }
+                        {props.context.map(doc => <> <li>{doc}  </li> <br /> </>)  }
                     </ul>
                 </div>
                 </>
@@ -66,7 +66,7 @@
                         Answer
                 </div>
                     <ul>
-                        {props.answer.map(ans => <li>* {ans} </li>)}
+                        {props.answer.map(ans => <li>{ans}</li>)}
                     </ul>
                 </div>
 
