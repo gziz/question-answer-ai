@@ -86,7 +86,8 @@ def question_url(req: schema.Request):
 async def question_file(req: schema.FileSchema):
     question = req.question
     index, _ = os.path.splitext(req.file_name)
-
+    index = index.lower()
+    
     answers, documents = haystack.retrieve(question, index)
 
     data = {"question":question,
