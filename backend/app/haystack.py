@@ -6,7 +6,7 @@ import pathlib
 
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
-HAYSTACK_MODEL_PATH = BASE_DIR / "ai-models" / "haystack-roberta-base-cased-squad2"
+HAYSTACK_MODEL_PATH = BASE_DIR / "ai-models" / "haystack-roberta-base-squad2"
 reader = FARMReader(model_name_or_path=HAYSTACK_MODEL_PATH)
 
 def process_for_elastic(text_stream, file_name):

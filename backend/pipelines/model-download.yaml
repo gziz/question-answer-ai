@@ -9,7 +9,7 @@ steps:
         from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 
         local_model_dir = "ai-models/"
-        model_name = "roberta-base-cased-squad2"
+        model_name = "roberta-base-squad2"
 
         destination_path = pathlib.Path(local_model_dir).resolve()
         destination_path = destination_path / model_name

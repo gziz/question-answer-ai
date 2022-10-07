@@ -12,7 +12,7 @@ steps:
         load_dotenv() 
 
         local_model_dir = "ai-models/"
-        s3_dirname = "haystack-roberta-base-cased-squad2"
+        s3_dirname = "haystack-roberta-base-squad2"
 
         destination_path = pathlib.Path(local_model_dir).resolve()
         destination_path_s3 = destination_path / s3_dirname
@@ -21,7 +21,7 @@ steps:
         s3_resource = boto3.resource('s3')
         bucket = s3_resource.Bucket(os.environ.get('BUCKET_NAME'))
 
-        for obj in bucket.objects.filter(Prefix = 'haystack-roberta-base-cased-squad2/'):
+        for obj in bucket.objects.filter(Prefix = 'haystack-roberta-base-squad2/'):
             if obj.key[-1] != '/':
                 
                 destination_file_path = destination_path / obj.key
