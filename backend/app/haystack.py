@@ -6,14 +6,14 @@ import pathlib
 
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
-HAYSTACK_MODEL_PATH = BASE_DIR / "ai-models" / "haystack-bert-base-cased-squad2"
+HAYSTACK_MODEL_PATH = BASE_DIR / "ai-models" / "haystack-roberta-base-cased-squad2"
 reader = FARMReader(model_name_or_path=HAYSTACK_MODEL_PATH)
 
-def process_for_elastic(text_stream):
+def process_for_elastic(text_stream, file_name):
 
     data_json = [
       {'content': paragraph,
-        'meta': {'source': 'naval'}}
+        'meta': {'source': file_name}}
          for paragraph in text_stream
       ]
     return data_json
@@ -21,7 +21,7 @@ def process_for_elastic(text_stream):
 
 def load_elastic(text_stream, file_name):
 
-    data_json = process_for_elastic(text_stream)
+    data_json = process_for_elastic(text_stream, file_name)
 
     doc_store = ElasticsearchDocumentStore(host = "es01", 
                                     port = 9200, 
@@ -33,6 +33,7 @@ def load_elastic(text_stream, file_name):
     return 'OK'
 
 def get_document_store(index: str):
+
     document_store = ElasticsearchDocumentStore(host = "es01", 
                                                 port = 9200, 
                                                 username = "", 
