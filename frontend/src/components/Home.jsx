@@ -21,7 +21,6 @@ const Home = () => {
         "file_name": context === undefined? "": context.name
       }
 
-      console.log(formData)
     }else{
       formData =  {
         "question": question,
@@ -52,7 +51,6 @@ const Home = () => {
         formData = new FormData();
         formData.append("file", context);
         const res = await axiosManager.post(endpoint, formData);
-        console.log(res.data)
         setIsLoading(false);
       }catch(err){
         console.log(err.message);
