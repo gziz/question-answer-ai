@@ -2,6 +2,7 @@ from haystack.document_stores import ElasticsearchDocumentStore
 from haystack.nodes import BM25Retriever
 from haystack.nodes import FARMReader
 from haystack.pipelines import ExtractiveQAPipeline
+from . import utils
 import pathlib
 
 
@@ -21,6 +22,7 @@ def process_for_elastic(text_stream, file_name):
 
 def load_elastic(text_stream, file_name):
 
+    file_name = utils.format_file_name(file_name)
     data_json = process_for_elastic(text_stream, file_name)
 
     doc_store = ElasticsearchDocumentStore(host = "es01", 
@@ -32,8 +34,8 @@ def load_elastic(text_stream, file_name):
     doc_store.write_documents(data_json)
     return 'OK'
 
-def get_document_store(index: str):
-
+def get_document_store(file_name: str):
+    index = utils.format_file_name(file_name)
     document_store = ElasticsearchDocumentStore(host = "es01", 
                                                 port = 9200, 
                                                 username = "", 
@@ -42,9 +44,9 @@ def get_document_store(index: str):
     return document_store
 
 
-def retrieve(query, index):
+def retrieve(query, file_name):
 
-    document_store = get_document_store(index)
+    document_store = get_document_store(file_name)
     retriever = BM25Retriever(document_store=document_store)
     
     pipe = ExtractiveQAPipeline(reader, retriever)

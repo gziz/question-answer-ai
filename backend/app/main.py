@@ -85,10 +85,9 @@ def question_url(req: schema.Request):
 @app.post("/question-file")
 async def question_file(req: schema.FileSchema):
     question = req.question
-    index, _ = os.path.splitext(req.file_name)
-    index = index.lower()
+    file_name, _ = os.path.splitext(req.file_name)
     
-    answers, documents = haystack.retrieve(question, index)
+    answers, documents = haystack.retrieve(question, file_name)
 
     data = {"question":question,
         "context": documents,
@@ -102,10 +101,9 @@ async def question_file(req: schema.FileSchema):
 async def upload_file(file: UploadFile):
     
     file_name, ext = os.path.splitext(file.filename)
-    file_name = file_name.lower()
 
     text_stream = await utils.process_file(file, file_name, ext)
-    
+
     status = haystack.load_elastic(text_stream, file_name)
 
     return {"filename": file_name, "status": status}
