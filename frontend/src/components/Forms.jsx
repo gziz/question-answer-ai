@@ -49,7 +49,7 @@ const Form = (props) => {
           <>
           <div className="mb-6 text-slate-200">
             <p>Give me a context as a file. I will read it and try to answer ...</p>
-            <p>Available formats: .pdf, .txt</p>
+            <p>Available formats: .pdf</p>
 
           </div>
 

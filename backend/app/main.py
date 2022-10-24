@@ -101,9 +101,11 @@ async def question_file(req: schema.FileSchema):
 async def upload_file(file: UploadFile):
     
     file_name, ext = os.path.splitext(file.filename)
+    if ext != 'pdf':
+        return {'filename': file_name}
 
     text_stream = await utils.process_file(file, file_name, ext)
 
-    status = haystack.load_elastic(text_stream, file_name)
+    haystack.load_elastic(text_stream, file_name)
 
-    return {"filename": file_name, "status": status}
+    return {"filename": file_name}

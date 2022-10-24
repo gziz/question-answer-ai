@@ -54,8 +54,10 @@ const FileUploader = (props) => {
           onDragEnter={handleDragDropEvent}
           onDragOver={handleDragDropEvent}
           onDrop={(e) => {
-            handleDragDropEvent(e);
-            setFiles(e, 'a');
+            if (files.length == 0){
+              handleDragDropEvent(e);
+              setFiles(e, 'a');
+            }
           }}
         >
           <p> Drop a Single File</p>
@@ -64,10 +66,12 @@ const FileUploader = (props) => {
           <input
             ref={inputRef}
             type="file"
+            accept=".pdf"
             multiple
             style={{ display: 'none' }}
             onChange={(e) => {
-              if (files.length > 0) {console.log('STOP')} else {setFiles(e, 'a')} ;
+              console.log(e)
+              if (files.length == 0) {setFiles(e, 'a'); console.log(e)} ;
               inputRef.current.value = null;
             }}
           />
@@ -88,8 +92,6 @@ const FileUploader = (props) => {
                 <button className='bg-rose-700 disabled:opacity-50 p-2 rounded-md text-sm hover:bg-rose-500' onClick={() => myRemoveFile(name)}>
                   x
                 </button>
-
-
 
               </li>
             ))}
