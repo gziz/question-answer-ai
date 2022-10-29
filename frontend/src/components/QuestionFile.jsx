@@ -1,39 +1,30 @@
 import React from "react";
 import axiosManager from '../apis/axiosManager';
-import Form from "./Forms.jsx"
+import Form from "./FormsFile.jsx"
 import Results from "./Results.jsx";
 import NavBar from "./NavBar.jsx"
 
-const Home = () => { 
+const QuestionFile = () => { 
     const [context, setContext] = React.useState(undefined);
     const [question, setQuestion] = React.useState("");
     const [answer, setAnswer] = React.useState(""); 
     const [hasResult, setHasResult] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [contextType, setContextType] = React.useState("question-text"); 
-    const [storeQuery, setStoreQuery] = React.useState(true);
+    const [file, setFile] = React.useState(undefined);
 
-    let formData;
-    if (contextType === "question-file"){
-      
-      formData =  {
+    const endpoint = 'question-file'
+
+    let formData =  {
         "question": question,
-        "file_name": context === undefined? "": context.name
+        "file_name": file === undefined? "": file.name
       }
 
-    }else{
-      formData =  {
-        "question": question,
-        "context": context,
-        "storeQuery": storeQuery
-      }
-    }
 
     const onSubmit = async () => {
       try{
         console.log("Submitting");
         setIsLoading(true);
-        const endpoint = `/${contextType}`
+        const endpoint = "/question-file"
         const res = await axiosManager.post(endpoint, formData);
         onResult(res.data)
         
@@ -49,7 +40,7 @@ const Home = () => {
 
         let formData;
         formData = new FormData();
-        formData.append("file", context);
+        formData.append("file", file);
         const res = await axiosManager.post(endpoint, formData);
         setIsLoading(false);
       }catch(err){
@@ -68,45 +59,33 @@ const Home = () => {
 
     // Cuando le demos back al boton en resultados:
     const onReset = (data) => {
-
-        setContext(context);
+        setFile(file);
         setHasResult(false);
         setIsLoading(false);
 
     }
-    
-    const navChange = (data) => {
-      setHasResult(false);
-      setAnswer("");
-      setContext("");
-      setQuestion("");
-    }
   
     // Hace render al forms o a la seccion de resultados
     let displayedElement = <></>;
-    if (hasResult) {    
-      console.log(context);
+    if (hasResult) {
       displayedElement = (
         <Results
           context={context}
           question={question}
           answer={answer}
           onBack={onReset}
-          contextType={contextType}
+          contextType={"question-file"}
         />
       );
     } else {
     displayedElement = (
       <Form
-        context={context}
-        contextType={contextType}
-        setContext={setContext}
+        file={file}
+        setFile={setFile}
         question={question}
         setQuestion={setQuestion}
         onSubmit={onSubmit}
         isLoading={isLoading}
-        setStoreQuery={setStoreQuery}
-        storeQuery={storeQuery}
         uploadFile={uploadFile}
       />
     );
@@ -114,7 +93,6 @@ const Home = () => {
 
     return (
       <>
-        <NavBar setContextType={setContextType} navChange={navChange}/>
         <div className=" flex scale-[0.85]">
             <div className="max-w-xl h-5/6 m-auto p-5">
                 <div className="bg-slate-800 p-6 rounded-md text-white">
@@ -131,4 +109,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default QuestionFile;

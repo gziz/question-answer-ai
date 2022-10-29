@@ -28,14 +28,14 @@ const FileUploader = (props) => {
 
   useEffect(() => {
     if (1>=files.length>0) {
-      props.setContext(files[0]);
+      props.setFile(files[0]);
     }
   }, [files])
 
   const myRemoveFile = (name) =>{
     removeFile(name);
     setUploaded(false);
-    props.setContext(undefined);
+    props.setFile(undefined);
   }
 
   let fileHelpers = <></>;
@@ -48,7 +48,6 @@ const FileUploader = (props) => {
 
   return (
     <div>
-     
         {/* Provide a drop zone and an alternative button inside it to upload files. */}
         <div className='h-36 bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3 text-center flex flex-col justify-around border-dashed border-2'
           onDragEnter={handleDragDropEvent}
@@ -70,7 +69,6 @@ const FileUploader = (props) => {
             multiple
             style={{ display: 'none' }}
             onChange={(e) => {
-              console.log(e)
               if (files.length == 0) {setFiles(e, 'a'); console.log(e)} ;
               inputRef.current.value = null;
             }}

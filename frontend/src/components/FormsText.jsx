@@ -1,4 +1,3 @@
-import FileUploader from "./FileUploader.jsx"
 import BeatLoader from "react-spinners/BeatLoader"
 
 const Form = (props) => { 
@@ -13,9 +12,8 @@ const Form = (props) => {
           props.setQuestion(text);
       };
     
-    let contextInput = <></>;
-    if (props.contextType === "question-text") {
-      contextInput = (
+    
+    let contextInput = (
         <>
         <div className="mb-6 text-slate-200">
           <p>Give me a context (paragraph/sentence) and a question. I will try to answer ...</p>
@@ -29,39 +27,6 @@ const Form = (props) => {
         ></textarea>
         </>
       );
-    } else if (props.contextType === "question-url") {
-      contextInput = (
-        <>
-          <div className="mb-6 text-slate-200">
-            <p>Give me a context as a website url and a question. I will scrape the website and try to answer ...</p>
-          </div>
-          <label className="">Context as URL</label>
-          <textarea
-            className="h-48 bg-gray-700 p-2 w-full rounded-md focus:outline-teal-400 mb-3"
-            type="text" placeholder="Paste your url!" 
-            onChange={(e) => updateContextValue(e)} 
-            value={props.context}
-          ></textarea>
-        </>
-      );
-      } else{
-        contextInput = (
-          <>
-          <div className="mb-6 text-slate-200">
-            <p>Give me a context as a file. I will read it and try to answer ...</p>
-            <p>Available formats: .pdf</p>
-
-          </div>
-
-          <label className="">Context as a File</label>
-          <FileUploader
-            setContext={props.setContext}
-            uploadFile={props.uploadFile}
-            />
-
-          </>
-        )
-      }
 
       const SubmitButton= (
         <button 
