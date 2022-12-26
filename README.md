@@ -1,7 +1,14 @@
 # Question Answering AI
 
-Web application implementing the RoBERTa transformer model to answer questions given text(context) input.
-RoBERTa is an open source model that has been pretrained with wikipidea for NLP tasks such as text classification and Q&A.
+Web application implementing the RoBERTa NLP model to answer questions given text(context) input.
+RoBERTa is an open source transformer model used for various NLP tasks such as text classification and Q&A.
+
+## Requirementes
+* Two docker containers part of the same network
+  * Python API container (FastAPI, RoBERTa, Query DB)
+  * Elastic Search container (For paragraph ranking)
+  
+The approach is simple, given that transformers models are not optimized for a large corpus, such as hundreds of paragraphs, we first pass the text file through Elasticsearch, then, the answer is extracted from the ranked pagraphs.
 
 ## Get Started
   
