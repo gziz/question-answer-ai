@@ -49,7 +49,7 @@ baseURL = "http://127.0.0.1:<your port>"
   * The AI understood that asking for Bill is also asking for Smith (same person). Not only that, but the text does not explicitly specifies the age of Bill (no "Bill is 36 years old...", no "Bill's age is ..."), it understood from the context that 36 is Bill's age.
   
   
-2. Additionally, you can provide a text file (PDF) as context.
+2. Additionally, provide a text file (PDF) as context.
     * When uploading the file, the app will read and process the file, then store the text in ElasticSearch.
     * The app can now receive questions where the response may be in the text file.
     * ElasticSearch will rank paragraphs using BM25, then RoBERTa will extract the answer from these.
