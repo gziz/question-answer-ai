@@ -13,5 +13,5 @@ python-dotenv
 uvicorn
 boto3
 bs4
-PyPDF2
+PyPDF2==2.11.1
 python-multipart
