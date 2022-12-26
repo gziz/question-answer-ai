@@ -3,6 +3,7 @@ from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
+
 # from cassandra.cqlengine.management import sync_table
 # from cassandra.query import SimpleStatement
 
