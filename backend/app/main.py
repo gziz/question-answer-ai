@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from . import ai, schema, scrape, utils, haystack
@@ -18,6 +18,7 @@ def on_startup():
     global AI_MODEL, DB_SESSION
     AI_MODEL = ai.get_model()
 
+
 @app.get("/")
 def read_root():
     return {"message": 'Hey!'}
@@ -33,12 +34,12 @@ def question_text(req: schema.Request):
 
     res = AI_MODEL(input_model)
 
-    data = {"question":question,
+    response = {"question":question,
             "context": context,
             "answer" : [res["answer"]],
             "score": res["score"]}
 
-    return {"data": data}
+    return {"data": response}
 
 
 @app.post("/question-url")
@@ -54,13 +55,13 @@ def question_url(req: schema.Request):
 
     res = AI_MODEL(input_model)
 
-    data = {"question":question,
+    response = {"question":question,
         "context": context,
         "answer" : [res["answer"]],
         "score": res["score"]}
     
 
-    return {"data": data}
+    return {"data": response}
 
 
 @app.post("/question-file")
@@ -70,12 +71,12 @@ async def question_file(req: schema.FileSchema):
     
     answers, documents = haystack.retrieve(question, file_name)
 
-    data = {"question":question,
+    response = {"question":question,
         "context": documents,
         "answer" :  answers,
         "score": 100}
 
-    return {'data': data}
+    return {'data': response}
 
 
 @app.post("/upload_file")
@@ -83,7 +84,8 @@ async def upload_file(file: UploadFile):
     
     file_name, ext = os.path.splitext(file.filename)
     if ext != '.pdf':
-        return {'filename': file_name}
+        raise HTTPException(status_code=422,
+                            detail="Invalid format (only pdf)")
 
     text_stream = await utils.process_file(file, file_name, ext)
 
