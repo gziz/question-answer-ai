@@ -1,31 +1,36 @@
 # Question Answering AI
 
-Web application implementing the BERT transformer model to retrieve a text(context) and answer questions.
-BERT is an open source model that has been pretrained with wikipidea for NLP tasks such as text classification and Q&A.
+Web application implementing the RoBERTa transformer model to answer questions given text(context) input.
+RoBERTa is an open source model that has been pretrained with wikipidea for NLP tasks such as text classification and Q&A.
 
 ## Get Started
-* Requirements:
-  * AstraDB account is needed if wanting to store queries.
   
-1. Create a virtual env and install requirements.txt
+1. Create the docker network (connect API with ElasticSearch)
 ```
-pip install -r requirements.txt
-```
-2. Download the necessary files (models and Cassandra bundle) using yaml pipelines .
-```
-python -m pypyr /app/pipelines/model-download
-python -m pypyr /app/pipelines/bundle-download
+docker network create qa-net
 ```
 
-2. Run locally python's fastAPI server.
+2. Build and start the API image
 ```
-uvicorn main:app --reload
+docker build -t qa-img -f Dockerfile .
 ```
-3. Run locally react front-end.
 ```
-npm start
+docker run -d --network qa-net -e PORT=8000 -p 80:8000 qa-img
 ```
-4. Modify the baseURL in axiosManager.js with your local port (where python's running).
+
+
+3. Pull and start the Elastic Search container with Docker
+```
+docker pull docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+```
+
+```
+docker run -d --name es01 --network qa-net -d -p 127.0.0.1:9200:9200 -p 127.0.0.1:9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+```
+Note: The name of the ElasticSearch container is the address the API will make requests to.
+
+
+4. Modify the baseURL in apis/axiosManager.js with your local port (where the API is running).
 ```
 baseURL = "http://127.0.0.1:<your port>"
 ```
@@ -44,13 +49,16 @@ baseURL = "http://127.0.0.1:<your port>"
   * The AI understood that asking for Bill is also asking for Smith (same person). Not only that, but the text does not explicitly specifies the age of Bill (no "Bill is 36 years old...", no "Bill's age is ..."), it understood from the context that 36 is Bill's age.
   
   
-2. Additionally, you can provide a url as a context.
-    * The app will scrape the website looking for text as context and try to respond the question.
-    * A more realistic scenario, having a question that could be responded with the text from a website.
+2. Additionally, provide a text file (PDF) as context.
+    * When uploading the file, the app will read and process the file, then store the text in ElasticSearch.
+    * The app can now receive questions where the response may be in the text file.
+    * ElasticSearch will rank paragraphs using BM25, then RoBERTa will extract the answer from these.
 
   <p align="center">
-   <img src="https://drive.google.com/uc?export=view&id=1GUTLsFWYCa7dTkLD-q46bEKMldYAoA4w"  width="550" height="auto">
-  <img src="https://drive.google.com/uc?export=view&id=1XPF0GFbVFpsKEh0afiu7moc_8io8mKFd"  width="550" height="auto">
+   <img src="https://drive.google.com/uc?export=view&id=1VHj924euaUxzPUdl7sYjMYk_sXKaEuMY"  width="750" height="auto">
+   <img src="https://drive.google.com/uc?export=view&id=1urltXd9zcKOaDYIUBMVC5TAiIMheQN7H"  width="750" height="auto">
+   <img src="https://drive.google.com/uc?export=view&id=13pyeq5lw-IPGH69CHuLqqVH_wax89fKE"  width="750" height="auto">
   </p>
+
 
 
