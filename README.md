@@ -3,7 +3,11 @@
 Web application implementing the RoBERTa NLP model to answer questions given text(context) input.
 RoBERTa is an open source transformer model used for various NLP tasks such as text classification and Q&A.
 
-## Requirementes
+  <p align="center">
+   <img src="https://drive.google.com/uc?export=view&id=1yqVP4urxjha7-VrACUHkS7Kh_vumelW4"  width="750" height="auto">
+  </p>
+
+## Requirements
 * Two docker containers part of the same network
   * Python API container (FastAPI, RoBERTa, Query DB)
   * Elastic Search container (For paragraph ranking)
