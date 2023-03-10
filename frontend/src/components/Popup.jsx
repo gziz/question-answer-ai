@@ -1,5 +1,5 @@
 
-function Modal(props) {
+function Popup(props) {
   return (props.trigger) ? (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center z-10">
       <div className="bg-white p-2 rounded w-72 justify-between p-6">
@@ -13,4 +13,4 @@ function Modal(props) {
   ): "";
 }
 
-export default Modal;
+export default Popup;

@@ -3,7 +3,7 @@ import QuestionText from './components/QuestionText';
 import Navbar from "./components/NavBar";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import { useEffect, useState } from 'react';
-import Modal from './components/Modal';
+import Popup from './components/Popup';
 
 
 
@@ -23,7 +23,7 @@ function App() {
       <header className="App-header">
       <Router>
         <Navbar/>
-        <Modal trigger={timedPopup} setTrigger={setTimedPopup} />
+        <Popup trigger={timedPopup} setTrigger={setTimedPopup} />
 
         <Routes>
           <Route exact path="/" element = {<QuestionText/>}/>
