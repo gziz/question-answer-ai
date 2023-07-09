@@ -4,7 +4,7 @@ Web application implementing the RoBERTa NLP model to answer questions given tex
 RoBERTa is an open source transformer model used for various NLP tasks such as text classification and Q&A.
 
   <p align="center">
-   <img src="https://drive.google.com/uc?export=view&id=1yqVP4urxjha7-VrACUHkS7Kh_vumelW4"  width="750" height="auto">
+   <img src="https://random-jerry.s3.amazonaws.com/github_images/qa-bert/q-a-diagram.png" width="750" height="auto">
   </p>
 
 ## Requirements
