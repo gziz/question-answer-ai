@@ -6,7 +6,7 @@ function Popup(props) {
         <h1 className="font-semibold text-center text-xl text-gray-700">
           Site currently unavailable
         </h1>
-        <p className="text-justify text-gray-700 mb-5">The machine hosting the AI model is currently unavailable!</p>
+        <p className="text-justify text-gray-700 mb-5">The AI model is currently unavailable! The cloud virtual machine bill was kinda getting me broke! 💸</p>
         
       </div>
     </div>
